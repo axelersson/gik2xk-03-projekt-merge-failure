@@ -36,7 +36,25 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+// Cart och user
+db.cart.belongsTo(db.user); 
+db.user.hasMany(db.cart);
 
+// Kopplat rating till produkt
+db.rating.belongsTo(db.product, {foreignKey: {allowNull: false } });
+db.product.hasMany(db.rating, {
+  allowNull: false,
+  onDelete:"CASCADE" 
+});
+
+db.product.belongsToMany(db.cart, {through: db.cartRow});
+db.cart.belongsToMany(db.product, { through: db.cartRow});
+
+
+
+//koppla rating till user??????? Finns ingen relation i umldiagrammet
+//koppla user till cart?????? Finns inte med i uppgiftsbeskrivningen
+//wackooo wackooo
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -15,3 +15,5 @@ module.exports = (sequelize, DataTypes) => {
       { underscored: true }
     );
   };
+
+  const sequelize = require("sequelize");
