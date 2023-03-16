@@ -32,6 +32,8 @@ const constraints = {
     },
 };
 
+router.get('/:id/ratings', (req, res) => {})
+
 router.get('/', (req, res) => {
     db.rating.findAll().then((result) => {
         res.send(result);

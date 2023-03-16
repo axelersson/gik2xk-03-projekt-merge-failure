@@ -1,8 +1,25 @@
 const router = require('express').Router();
-const db = require("../models");
-
 const productService = require ("../services/productService");
 
+
+
+router.get("/:id", (req, res) => {
+    const id = req.params.id;
+    
+    productService.getById(id).then((result) => {
+        //res.send(result)
+        res.status(result.status).json(result.data);
+    });
+})
+
+router.get("/:id/getRatings", (req, res) =>{
+    
+});
+
+router.post("/:id/addRating", (req, res) => {
+    
+
+});
 
 
 router.get('/', (req, res) => {
@@ -20,18 +37,22 @@ router.post("/",(req,res) => {
 
 router.put("/",(req,res) => {
     const product = req.body;
-    const invalidData = validate(product, constraints);
+    //const invalidData = validate(product, constraints);
     const id = product.id;
+
+    productService.update(product, id).then((result) => {
+        res.status(result.status).json(result.data);
+    });
+    
     
 });
 
 router.delete("/",(req,res) => {
-    db.product
-    .destroy({
-        where: {id: req.body.id }
-    }).then(() => {
-        res.json(`Inlägget raderades`);
+    const id = req.body.id;
+    productService.destroy(id).then((result) => {
+        res.status(result.status).json(result.data);
     });
+    
 });
 
 module.exports = router;

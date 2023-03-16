@@ -18,11 +18,11 @@ const constraints = {
             tooShort: "^Titeln måste vara minst %{count} tecken lång.",
             tooLong: "^Titeln får inte vara längre än %{count} tecken lång."
     },
-    },
+    /* },
     description: {
     },
     price: {
-    },
+    */}, 
     imageUrl: {
         url: {
             message: "^Felaktig sökväg"
@@ -34,6 +34,16 @@ const {
     createResponseError,
     createResponseMessage
 } = require("../helpers/responseHelper");
+
+async function getById(id){
+    try {
+        const oneProduct = await db.product.findOne({where: {id}});
+        return createResponseSuccess(oneProduct);
+    } catch (error){
+        return createResponseError(error.status, error.message);
+        };
+    }
+
 
 async function getAll() {
     try {
@@ -81,11 +91,26 @@ async function update(product, id) {
 }
 
 
-function destroy() {
-
+async function destroy(id) {
+    if (!id) {
+        return createResponseError(422, "Id är obligatoriskt");
+    }
+    try{
+        await db.product
+    .destroy({
+        where: { id }
+    });
+    return createResponseMessage(200, "Inlägget raderades");
+    }
+    catch (error){
+        return createResponseError(error.status, error.message);
+    }
 }
 
-module.exports = { getAll,
+module.exports = {
+    getById, 
+    getAll,
+    getById,
     create,
     update,
     destroy
