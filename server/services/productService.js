@@ -37,9 +37,12 @@ const {
 
 async function getById(id){
     try {
-        const oneProduct = await db.product.findOne({where: {id}});
+        const oneProduct = await db.product.findOne({
+            where: {id},
+            include:[db.rating]   
+            }) 
         return createResponseSuccess(oneProduct);
-    } catch (error){
+    }catch (error){
         return createResponseError(error.status, error.message);
         };
     }
@@ -47,7 +50,7 @@ async function getById(id){
 
 async function getAll() {
     try {
-        const allProducts = await db.product.findAll();
+        const allProducts = await db.product.findAll({include: [db.rating]});
         return createResponseSuccess(allProducts);
     } catch (error){
         return createResponseError(error.status, error.message);
@@ -64,7 +67,23 @@ async function create(product) {
     } else {
         try {
             const newProduct = await db.product.create(product);
+
+            
             return createResponseSuccess(newProduct);
+        }catch (error){
+            return createResponseError(error.status, error.message);
+        }
+    }
+}
+
+async function addRating(productId, rating) {
+    if(!productId) {
+        return createResponseError(422, "Id är obligatorisk");
+    } else {
+        try {
+            rating.productId = productId;
+            const newRating = await db.rating.create(rating);
+            return createResponseSuccess(newRating);
         }catch (error){
             return createResponseError(error.status, error.message);
         }
@@ -79,15 +98,44 @@ async function update(product, id) {
     if(invalidData) {
         return createResponseError(422, invalidData);
      }
-        try {
-            await db.product.update(product, {
-                where: {id}
-            });
-            return createResponseMessage(200, "Inlägget uppdaterades");
-        }catch (error){
-            return createResponseError(error.status, error.message);
+    try {
+        const existingProduct = await db.product.findOne({ where: {id} });
+        if(!existingProduct ) {
+            return createResponseError(404, "Hittade ingen produkt att uppdatera!");
         }
+        await db.product.update(product, {
+                where: {id}
+        });
+        return createResponseMessage(200, "Inlägget uppdaterades");
+    }catch (error){
+            return createResponseError(error.status, error.message);
+    }
         
+}
+function _formatProduct(product) {
+    const cleanProduct = {
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+      createdAt: product.createdAt,
+      updatedAt: product.updatedAt,
+    };
+  
+    if (product.ratings) {
+      cleanPost.ratings = [];
+  
+      product.ratings.map((rating) => {
+        return (cleanProduct.ratings = [
+          {
+            rating: product.rating.rating,
+            createdAt: product.rating.createdAt
+          },
+          ...cleanProduct.ratings
+        ]);
+      });
+    }
 }
 
 
@@ -108,6 +156,7 @@ async function destroy(id) {
 }
 
 module.exports = {
+    addRating,
     getById, 
     getAll,
     getById,
