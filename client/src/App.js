@@ -4,11 +4,12 @@ import { Routes, Route, Link } from "react-router-dom";
 import Products from "./views/Products";
 import Cart from "./views/Cart";
 import ProductEdit from "./views/ProductEdit";
+//import Logo from "./silkroadshop.png";
 
 function App() {
   return (
     <div className="App">
-      <h1>Silk Road</h1>
+      <h1>hedvábná stezka</h1>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
