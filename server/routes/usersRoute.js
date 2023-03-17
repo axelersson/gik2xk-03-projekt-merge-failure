@@ -66,7 +66,7 @@ router.delete("/",(req,res) => {
     .destroy({
         where: {id: req.body.id }
     }).then(() => {
-        res.json(`Inlägget raderades`);
+        res.json(`Användaren raderades`);
     });
 });
 
