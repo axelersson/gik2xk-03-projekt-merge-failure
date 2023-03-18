@@ -16,7 +16,7 @@ function ProductItemSmall({ product }) {
       </Link>
       <div>
         <Typography variant="h5" component="h3">
-          <Link to={`/products/${product.id}`}>{product.title} Hejehejeh</Link>
+          <Link to={`/products/${product.id}`}>{product.title}</Link>
         </Typography>
         <Link to={`/products/${product.id}/edit`}>
           <Button variant="outlined">Ändra produkt</Button>

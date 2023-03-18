@@ -27,7 +27,7 @@ function App() {
       </Box>
       <div>
         <Routes>
-          <Route exact path="*" element={<Products></Products>}></Route>
+          <Route exact path="/" element={<Products></Products>}></Route>
           <Route exact path="/cart" element={<Cart></Cart>}></Route>
           <Route
             exact

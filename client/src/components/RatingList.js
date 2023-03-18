@@ -1,29 +1,13 @@
 import RatingItemSmall from "./RatingItemSmall";
+import { useEffect, useState } from "react";
+import { getAll } from "../models/RatingsModel";
 
 function RatingList() {
-  const ratings = [
-    {
-      id: 1,
-      rating: 7.5,
-      createdAt: "2023-03-16T13:05:10.000Z",
-      updatedAt: "2023-03-16T13:05:10.000Z",
-      productId: 2,
-    },
-    {
-      id: 2,
-      rating: 6.39,
-      createdAt: "2023-03-16T13:46:35.000Z",
-      updatedAt: "2023-03-16T13:46:35.000Z",
-      productId: 2,
-    },
-    {
-      id: 3,
-      rating: 2,
-      createdAt: "2023-03-16T13:49:26.000Z",
-      updatedAt: "2023-03-16T13:49:26.000Z",
-      productId: 2,
-    },
-  ];
+  const [ratings, setRatings] = useState([]);
+
+  useEffect(() => {
+    getAll().then((ratings) => setRatings(ratings));
+  }, []);
   return (
     <ul>
       {ratings &&
