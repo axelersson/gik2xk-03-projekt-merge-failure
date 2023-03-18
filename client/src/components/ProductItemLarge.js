@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import RatingList from "./RatingList";
 
 function ProductItemLarge({ product }) {
-  console.log(product);
+  /* console.log(product[0]); */
   return (
     <>
       <img

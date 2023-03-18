@@ -20,28 +20,33 @@ function App() {
               <Link to="/cart">nákupní košík</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/administration">správa ádministratoní</Link>
+              <Link to="/products/new">správa ádministratoní</Link>
             </Typography>
           </Toolbar>
         </AppBar>
       </Box>
       <div>
         <Routes>
-          <Route path="/" element={<Products></Products>}></Route>
-          <Route path="/cart" element={<Cart></Cart>}></Route>
+          <Route exact path="*" element={<Products></Products>}></Route>
+          <Route exact path="/cart" element={<Cart></Cart>}></Route>
           <Route
-            path="/administration"
+            exact
+            path="/products/:id"
+            element={<ProductDetail></ProductDetail>}
+          ></Route>
+          <Route
+            exact
+            path="/products/new"
             element={<ProductEdit></ProductEdit>}
           ></Route>
           <Route
-            path="/productDetail"
-            element={<ProductDetail></ProductDetail>}
+            exact
+            path="/products/:id/edit"
+            element={<ProductEdit></ProductEdit>}
           ></Route>
         </Routes>
       </div>
     </div>
   );
 }
-
-///products/${product.id}
 export default App;

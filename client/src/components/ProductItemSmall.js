@@ -1,33 +1,29 @@
-import { Button, Link, Typography } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
-import AddToCart from "../components/AddToCart.js";
+import { Link } from "react-router-dom";
+import { Button, Typography } from "@mui/material";
 
 function ProductItemSmall({ product }) {
   console.log(product);
+  console.log(product.id);
   return (
     <>
-      <img
-        height="50"
-        width="50"
-        src={product.imageUrl}
-        alt="Det saknas en bild på produkten"
-      />
+      <Link to={`/products/${product.id}`}>
+        <img
+          height="50"
+          width="50"
+          src={product.imageUrl}
+          alt="Det saknas en bild på produkten"
+        />
+      </Link>
       <div>
         <Typography variant="h5" component="h3">
-          <div>{product.title}</div>
+          <Link to={`/products/${product.id}`}>{product.title} Hejehejeh</Link>
         </Typography>
-        <Button variant="outlined">
-          <Routes>
-            <Route path={`/products/${product.id}`}></Route>
-          </Routes>
-          {/* <Link to={`/products/${product.id}`}{product.name}></Link> */}
-          {product.name}
-        </Button>
-        <Button variant="outlined">
-          <Link to={`/products/${product.id}/addToCart`}>
-            <AddToCart productId={product.id} />
-          </Link>
-        </Button>
+        <Link to={`/products/${product.id}/edit`}>
+          <Button variant="outlined">Ändra produkt</Button>
+        </Link>
+        <Link to={`/products/${product.id}/addToCart`}>
+          <Button variant="outlined">Lägg till i varukorg</Button>
+        </Link>
       </div>
     </>
   );
