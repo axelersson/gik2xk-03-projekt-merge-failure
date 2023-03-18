@@ -4,7 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Products from "./views/Products";
 import Cart from "./views/Cart";
 import ProductEdit from "./views/ProductEdit";
-//import Logo from "./silkroadshop.png";
+import ProductDetail from "./views/ProductDetail";
 
 function App() {
   return (
@@ -33,10 +33,15 @@ function App() {
             path="/administration"
             element={<ProductEdit></ProductEdit>}
           ></Route>
+          <Route
+            path="/productDetail"
+            element={<ProductDetail></ProductDetail>}
+          ></Route>
         </Routes>
       </div>
     </div>
   );
 }
 
+///products/${product.id}
 export default App;

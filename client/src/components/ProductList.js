@@ -1,6 +1,6 @@
-import ProductItemLarge from "../components/ProductItemLarge";
+import ProductItemSmall from "./ProductItemSmall";
 
-function ProductDetail() {
+function ProductList() {
   const products = [
     {
       id: 2,
@@ -35,12 +35,18 @@ function ProductDetail() {
       ],
     },
   ];
-
   return (
-    <>
-      <ProductItemLarge product={products} />
-    </>
+    <ul>
+      {products &&
+        products.map((product) => {
+          return (
+            <li key={`productId_${product.id}`}>
+              <ProductItemSmall product={product} />
+            </li>
+          );
+        })}
+    </ul>
   );
 }
 
-export default ProductDetail;
+export default ProductList;
