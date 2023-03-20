@@ -1,5 +1,5 @@
 function AddToCart() {
-  return <h2>Lägg till i varukorg</h2>;
+  return <Link to={``}><h2>Lägg till i varukorg</h2></Link>
 }
 
 export default AddToCart;

@@ -34,6 +34,7 @@ router.post("/:id/addRating", (req, res) => {
 
 router.get("/", (req, res) => {
   productService.getAll().then((result) => {
+/*     console.log(result.data) */
     res.status(result.status).json(result.data);
   });
 });

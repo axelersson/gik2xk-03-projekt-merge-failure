@@ -12,9 +12,9 @@ export async function getAll() {
 }
 
 export async function getOne(id) {
-  const result = await api.get("/products/:id");
+  const result = await api.get(`/products/${id}`);
 
-  if (result.status === 200) return result.data;
+  if (result.status === 200)  return result
   else {
     console.log(result.status);
     console.log(result.data);

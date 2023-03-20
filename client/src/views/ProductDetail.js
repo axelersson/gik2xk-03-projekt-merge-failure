@@ -5,13 +5,13 @@ import RatingList from "../components/RatingList";
 
 function ProductDetail() {
   const params = useParams();
-  console.log({ params });
+  /* console.log({ params }); */
   return (
     <>
       <ProductItemLarge params={params} />
-
-      <RatingList params={params}></RatingList>
-
+      <ul>
+      <RatingList params={params} />
+      </ul>
       <Button variant="outlined">
         {/* <Routes>
             <Route path={`/products/${product.id}`}></Route>

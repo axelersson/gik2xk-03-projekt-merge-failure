@@ -1,28 +1,32 @@
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getOne } from "../models/ProductModel";
+import { getAll } from "../models/ProductModel";
+import findProduct from "../HelperFunctions/findProduct";
 
 function ProductItemLarge({ params }) {
   console.log(params.id);
-  const [product, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
-    getOne(params.id).then((product) => setProducts(product));
-  }, [product, params]);
-  console.log(product.data);
+    getAll().then((products) => setProducts(findProduct(products, params.id)));
+  }, [params]);
+  console.log(products)
+  if (products) {
   return (
     <>
       <img
         height="50"
         width="50"
-        src={product.imageUrl}
+        src={products.imageUrl}
         alt="Det saknas en bild på produkten"
       />
       <Typography variant="h5" component="h3">
-        <div>{product.title}</div>
+        <div>{products.title}</div>
       </Typography>
-      <p>{product.description}</p>
+      <p>{products.description}</p>
     </>
   );
+  }
 }
+
 
 export default ProductItemLarge;

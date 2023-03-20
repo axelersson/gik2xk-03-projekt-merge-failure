@@ -1,15 +1,13 @@
 import { Rating, Typography } from "@mui/material";
 
-function RatingItemSmall({ hej }) {
-  const rating = hej.rating;
+function RatingItemSmall({ product }) {
+  console.log('hej')
   return (
-    <>
-      <div>
-        {console.log(rating)}
-        <Typography component="legend">{rating.createdAt}</Typography>
-        <Rating name="customized-10" value={rating.rating} max={10} />
-      </div>
-    </>
+      <>
+        {console.log(product)}
+        <Typography component="legend">{product.createdAt}Lite extra text</Typography>
+        <Rating name="customized-10" value={product.rating} max={10} />
+        </>
   );
 }
 
