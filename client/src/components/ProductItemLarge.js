@@ -1,8 +1,14 @@
 import { Typography } from "@mui/material";
-import RatingList from "./RatingList";
+import { useEffect, useState } from "react";
+import { getOne } from "../models/ProductModel";
 
-function ProductItemLarge({ product }) {
-  /* console.log(product[0]); */
+function ProductItemLarge({ params }) {
+  console.log(params.id);
+  const [product, setProducts] = useState([]);
+  useEffect(() => {
+    getOne(params.id).then((product) => setProducts(product));
+  }, [product, params]);
+  console.log(product.data);
   return (
     <>
       <img
@@ -15,9 +21,6 @@ function ProductItemLarge({ product }) {
         <div>{product.title}</div>
       </Typography>
       <p>{product.description}</p>
-      <div>
-        <RatingList rating={product.ratings}></RatingList>
-      </div>
     </>
   );
 }

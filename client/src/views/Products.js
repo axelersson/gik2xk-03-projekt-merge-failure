@@ -17,8 +17,6 @@ function Products() {
 
 export default Products;
 
-//<h2>smidig hitman 24/7</h2>;
 //<h2>helt vanligt jävla knark</h2>;
-//<h2>en helt vanlig tabbe</h2>;
 //
 //

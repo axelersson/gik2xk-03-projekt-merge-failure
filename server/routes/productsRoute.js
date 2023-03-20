@@ -5,12 +5,24 @@ router.get("/:id", (req, res) => {
   const id = req.params.id;
 
   productService.getById(id).then((result) => {
-    //res.send(result)
     res.status(result.status).json(result.data);
   });
 });
 
-router.get("/:id/getRatings", (req, res) => {});
+router.get("/:id/ratings", (req, res) => {
+  id = req.params.id;
+  /* db.rating
+    .findAll(rating, {
+      where: { id: rating.id },
+    })
+    .then((result) => {
+      res.send(result);
+    }); */
+
+  productService.getById(id).then((result) => {
+    res.status(result.status).json(result.data);
+  });
+});
 
 router.post("/:id/addRating", (req, res) => {
   const rating = req.body;

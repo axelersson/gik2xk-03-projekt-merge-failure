@@ -4,7 +4,6 @@ import ProductItemSmall from "./ProductItemSmall";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
     getAll().then((products) => setProducts(products));
   }, []);

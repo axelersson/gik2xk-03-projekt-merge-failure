@@ -1,20 +1,22 @@
 import RatingItemSmall from "./RatingItemSmall";
 import { useEffect, useState } from "react";
-import { getAll } from "../models/RatingsModel";
+import { getAll } from "../models/ProductModel";
 
-function RatingList() {
-  const [ratings, setRatings] = useState([]);
-
+function RatingList({ params }) {
+  console.log(params.id);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
-    getAll().then((ratings) => setRatings(ratings));
+    getAll().then((products) => setProducts(products));
   }, []);
+  console.log(products);
   return (
     <ul>
-      {ratings &&
-        ratings.map((rating) => {
+      {products[params.id] &&
+        products[params.id].map((product) => {
           return (
-            <li key={`ratingId_${rating.id}`}>
-              <RatingItemSmall rating={rating} />
+            <li key={`productId_${product.id}`}>
+              {console.log("hej")}
+              <RatingItemSmall product={product} />
             </li>
           );
         })}
@@ -23,3 +25,12 @@ function RatingList() {
 }
 
 export default RatingList;
+
+/* {ratings &&
+  ratings.map((rating) => {
+    return (
+      <li key={`ratingId_${rating.id}`}>
+        <RatingItemSmall rating={rating} />
+      </li>
+    );
+  })} */

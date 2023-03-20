@@ -9,18 +9,18 @@ import ProductDetail from "./views/ProductDetail";
 function App() {
   return (
     <div className="App">
-      <h1>hedvábná stezka</h1>
+      <h1>Säkerhet alltid avstängd</h1>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/">produkty</Link>
+              <Link to="/">Produkter</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/cart">nákupní košík</Link>
+              <Link to="/cart">Varukorg</Link>
             </Typography>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="/products/new">správa ádministratoní</Link>
+              <Link to="/products/new">halaltech</Link>
             </Typography>
           </Toolbar>
         </AppBar>
@@ -28,6 +28,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path="/" element={<Products></Products>}></Route>
+          <Route exact path="/products" element={<Products></Products>}></Route>
           <Route exact path="/cart" element={<Cart></Cart>}></Route>
           <Route
             exact

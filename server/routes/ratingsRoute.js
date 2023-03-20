@@ -30,7 +30,25 @@ const constraints = {
   },
 };
 
-router.get("/:id/ratings", (req, res) => {});
+router.get("/:id/ratings", (req, res) => {
+  id = req.params.id;
+  db.rating
+    .findAll(ratings, {
+      where: { id: rating.id },
+    })
+    .then((result) => {
+      res.send(result);
+    });
+});
+
+/* db.rating
+      .update(rating, {
+        where: { id: rating.id },
+      })
+      .then((result) => {
+        res.send(result);
+      });
+  } */
 
 router.get("/", (req, res) => {
   db.rating.findAll().then((result) => {
